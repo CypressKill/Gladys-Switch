@@ -1,0 +1,167 @@
+<div class="content">
+	<div class="global-start">
+		<div class="col-md-4 col-sm-4">
+			<div class="onoffswitch">
+			    <button class="btn btn-success" ng-click="vm.startAll()">
+			    Start all</button>
+			</div>
+
+		</div>
+		<div class="col-md-4 col-sm-4">
+			<button class="btn btn-primary" ng-click="vm.modal = 'new'">
+				<i class="fa fa-plus"></i>
+				Add a Switch
+			</button>
+		</div>
+		<div class="col-md-4 col-sm-4">
+			<div class="onoffswitch">
+			    <button class="btn btn-danger" ng-click="vm.shutdownAll()">
+			    Shutdown all</button>
+			</div>
+
+		</div>
+	</div>
+		
+
+
+
+<!--Display of Switchs, and controls-->
+
+
+	<div class="row">
+		<table class="table table-bordered col-lg-12 switch-table" ng-show="vm.switchs.length >0">
+			<thead>
+				<tr>
+					<th>Statut</th>
+					<th>Numéro de Prise</th>
+					<th>Localisation</th>
+					<th>Type de Prise</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="Switch in vm.switchs">
+					<td><i class="fa fa-square" ng-class="{'text-red': Switch.statut == 0, 'text-green': Switch.statut == 1}"></i>
+					</td>
+					<td> {{Switch.id}}
+							<button class="btn btn-success btn-xs" ng-click="vm.start(Switch)">
+							Start
+							</button>
+							<button class="btn btn-danger btn-xs" ng-click="vm.shutdown(Switch)">Stop
+							</button>						
+					</td>
+					<td> {{Switch.location}}</td>
+					<td> {{Switch.type}}</td>
+					<td>
+						<button ng-click="vm.viewEdit(Switch)" class="btn btn-primary btn-xs">Editer</button>
+						<button ng-click="vm.destroy(Switch)" class="btn btn-danger btn-xs">Supprimer</button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+	<div class="row">
+		<div class="start-type">
+			<div class="col-sm-4">
+				<button class="btn btn-warning" ng-click="vm.startByType()">Start By : 
+				</button>
+			</div>
+			<div class="col-sm-4" id="padding-select">
+				<div class="content-type">
+					<select ng-model="vm.type" class="form-control" id="select-type" required>
+							<option value="" disabled selected="selected">Select The Type</option>
+							<option ng-repeat="type in vm.types" value="{{type.type}}"> {{type.type}}
+							</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-4" id="padding-button">
+				<div class="button-shutdownBy">
+					<button class="btn btn-warning" ng-click="vm.shutdownByType()">: Shutdown By 
+					</button>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+
+</div>
+
+<div class="modal modal-switch" ng-show="vm.modal">
+	<div class="modal-dialog">
+	    <div ng-if="vm.modal" ng-include src="'/switch.modal.'+ vm.modal +'.html'" class="modal-content" id="switch-modal-content">
+	    </div>
+	</div>
+</div>
+
+		
+
+
+
+<!-- Modal add a switch -->
+<script type="text/ng-template" id="/switch.modal.new.html">
+	<div class="modal-header">
+		<button class="close" ng-click="vm.modal=false" type="button">
+			<span aria-hidden="true">x</span>
+		</button>
+		<h4 class="modal-title">Add a Switch</h4>
+	</div>
+	<div class="modal-body">
+		<div class="col-sm-8 col-sm-offset-2">
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.new_switch.id" placeholder="Numero d'identification de la Prise" type="text">
+			</div>
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.new_switch.location" placeholder="Positionnement de la Prise dans la pièce" type="text">
+			</div>
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.new_switch.type" placeholder="Type d'appareil lié à la Prise" type="text">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary text-right" ng-click="vm.create(vm.new_switch)">Add</button>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+			
+</script>
+
+<!--Modal modify a device -->
+
+
+<script type="text/ng-template" id="/switch.modal.edit.html">
+
+	<div class="modal-header">
+		<button class="close" ng-click="vm.modal=false" type="button">
+			<span aria-hidden="true">x</span>
+		</button>
+		<h4 class="modal-title">Edit a Switch</h4>
+	</div>
+	<div class="modal-body">
+		<div class="col-sm-8 col-sm-offset-2">
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.update_switch.id" placeholder="Numero d'identification de la Prise" type="text" readonly>
+			</div>
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.update_switch.location" placeholder="Positionnement de la Prise dans la pièce" type="text">
+			</div>
+			<div class="form-group">
+				<input class="form-control ng-pristine ng-valid" ng-model="vm.update_switch.type" placeholder="Type d'appareil lié à la Prise" type="text">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary text-right" ng-click="vm.update(vm.update_switch)">Edit</button>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+		
+</script>
+
+		
+	

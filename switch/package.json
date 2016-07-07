@@ -1,0 +1,18 @@
+{
+	"name":"Gladys-Switch",
+	"version":"0.1.0",
+	"description":"Hook to controll Rf Switch in Gladys",
+	"keywords":[],
+	"main":"index.js",
+	"scripts":{
+	  "test":"echo \"Error : no test specified\" && exit 1"
+	},
+	"dependencies":{
+		"bluebird": "^2.10.0",
+    	"sails-util-mvcsloader": "~0.3.0"
+	},
+	"author":"CypressKill",
+	"license": "Creative Commons 3.0 France"
+
+
+}
