@@ -2,12 +2,12 @@
 module.exports = function (sails) {
 
 
-
+/*
 	var loader = require("sails-util-mvcsloader")(sails);
 	loader.injectAll({
 		policies : __dirname + '/policies',
 		config : __dirname + '/config'
-	});
+	});*/
 	//var install = require('./lib/install')(sails);
 	gladys.on('ready', function(){
 		var install = require('./lib/install');
@@ -23,7 +23,7 @@ module.exports = function (sails) {
 	    //setup: require('./lib/setup')(sails),
             uninstall: require('./lib/uninstall')(sails),
 	    //install:require('./lib/install')(sails),
-            routes: require('./lib/routes')(sails),
+            //routes: require('./lib/routes')(sails),
 
 	};
 };	
