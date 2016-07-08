@@ -15,5 +15,3 @@ module.exports.routes = {
 	'POST /switch/startAll':'SwitchController.startAll'
 	
 };
-//'/switch/startAll':'SwitchController.startAll',
-	//'/switch/shutdownAll':'SwitchController.shutdownAll'
